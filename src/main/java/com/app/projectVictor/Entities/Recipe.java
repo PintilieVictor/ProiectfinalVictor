@@ -1,54 +1,62 @@
 package com.app.projectVictor.Entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import org.springframework.data.annotation.Id;
-
-import java.util.List;
 
 @Entity
 public class Recipe {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private String title;
     private String description;
+    private int userId;
 
-    @OneToMany(mappedBy = "recipe")
-    @JoinColumn(name = "creator_id")
-    private User creator;
-
-    public User getCreator() {
-        return creator;
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setCreator(User creator) {
-        this.creator = creator;
+    public String getTitle() {
+        return title;
     }
 
-    private List<Review> reviews;
-
-
-    public List<Review> getReviews() {
-        return reviews;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-
-    public Object getDescription() {
-        return getDescription();
+    public String getDescription() {
+        return description;
     }
 
-    public Object setDescription(Object description) {
-        return getDescription();
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setTitle(String deliciousDish) {
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(long l) {
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public Recipe getRecipe() {
-        Recipe recipe = new Recipe();
-        return recipe;
+    //Partea asta este pentru calcularea mediei
+
+    public double getAverageScore() {
+        return averageScore;
     }
+
+    public void setAverageScore(double averageScore) {
+        this.averageScore = averageScore;
+    }
+
+    private double averageScore;
+//.................................................................
 }

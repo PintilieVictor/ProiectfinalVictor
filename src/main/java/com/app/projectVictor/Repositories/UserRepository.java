@@ -1,14 +1,11 @@
 package com.app.projectVictor.Repositories;
 
-import org.apache.catalina.User;
+import com.app.projectVictor.Entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+public interface UserRepository extends JpaRepository<User, Integer> {
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUsername(String username);
+    //Partea asta este pentru login
 
-    boolean existsByUsername(String username);
+    User findByEmail(String email);
 }

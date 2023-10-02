@@ -1,19 +1,19 @@
 package com.app.projectVictor.Services;
 
-import com.app.projectVictor.Entities.Recipe;
 import com.app.projectVictor.Entities.Review;
 import com.app.projectVictor.Repositories.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReviewService {
-    private final ReviewRepository reviewRepository;
 
     @Autowired
+    private ReviewRepository reviewRepository;
+
     public ReviewService(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
@@ -21,32 +21,23 @@ public class ReviewService {
     public Review createReview(Review review) {
         return reviewRepository.save(review);
     }
-
-    public Review updateReview(Review review) {
-        return reviewRepository.save(review);
+    public Review updateReview(Review updatedReview) {
+        return reviewRepository.save(updatedReview);
     }
 
-    public void deleteReview(Long reviewId) {
-        reviewRepository.deleteById(reviewId);
+    public void deleteReview(int id) {
+        reviewRepository.deleteById(id);
     }
 
-    public Review findReviewById(Long reviewId) {
-        return reviewRepository.findById(reviewId).orElse(null);
+    public List<Review> getReviewsByRecipeId(int recipeId) {
+        return reviewRepository.findByRecipeId(recipeId);
     }
 
-
-    public List<Review> findAll() {
-        return findAll();
+    public List<Review> getReviewsByUserId(int userId) {
+        return reviewRepository.findByUserId(userId);
     }
-    public Recipe findRecipeById(Long recipeId) {
-        return reviewRepository.findById(recipeId).orElse(null).getRecipe();
-    }
-    @Bean
-    public void save(Review review) {
-        reviewRepository.save(review);
-    }
-
-    public void save(Recipe recipe) {
+    public Review getReviewById(int id) {
+        Optional<Review> optionalReview = reviewRepository.findById(id);
+        return optionalReview.orElse(null);
     }
 }
-
