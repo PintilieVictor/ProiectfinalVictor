@@ -14,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 
-//Initial nu au mers anotarile. Tb vazut daca sunt ok acuma.
+//Initial nu au mers anotarile. Tb vazut daca sunt ok acuma. Nu merge cand dau push incerc cu un nou repository.
 public class UserDto{
     private Long id;
     @NotEmpty
